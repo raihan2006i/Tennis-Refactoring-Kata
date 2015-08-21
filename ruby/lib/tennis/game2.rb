@@ -110,18 +110,6 @@ module Tennis
       result
     end
 
-    def setp1Score(number)
-      (0..number).each do |i|
-        first_player_score
-      end
-    end
-
-    def setp2Score(number)
-      (0..number).each do |i|
-        second_player_score
-      end
-    end
-
     def first_player_score
       @first_player_points +=1
     end
