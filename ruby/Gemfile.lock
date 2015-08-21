@@ -1,12 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    require_relative (1.0.3)
     test-unit (2.5.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  require_relative
   test-unit
 
 BUNDLED WITH
