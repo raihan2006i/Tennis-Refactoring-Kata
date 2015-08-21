@@ -13,7 +13,7 @@ module Tennis
       result = ''
       if first_player_points == second_player_points
         result = POINTS_DESCRIPTION[:equal].fetch(first_player_points, 'Deuce')
-      elsif first_player_points >= 4 or second_player_points >= 4
+      elsif first_player_points >= 4 || second_player_points >= 4
         points_difference = first_player_points - second_player_points
         if points_difference == 1
           result = "Advantage #{first_player_name}"
