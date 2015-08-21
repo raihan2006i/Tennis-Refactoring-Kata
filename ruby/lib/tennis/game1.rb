@@ -10,39 +10,29 @@ module Tennis
     end
 
     def score
-      result = ""
-      temp_score = 0
+      result = ''
       if first_player_points == second_player_points
-        result = {
-            0 => "Love-All",
-            1 => "Fifteen-All",
-            2 => "Thirty-All",
-        }.fetch(first_player_points, "Deuce")
+        result = POINTS_DESCRIPTION[:equal].fetch(first_player_points, 'Deuce')
       elsif first_player_points >= 4 or second_player_points >= 4
-        minus_result = first_player_points - second_player_points
-        if minus_result == 1
-          result ="Advantage " + first_player_name
-        elsif minus_result == -1
-          result ="Advantage " + second_player_name
-        elsif minus_result >= 2
-          result = "Win for " + first_player_name
+        points_difference = first_player_points - second_player_points
+        if points_difference == 1
+          result = "Advantage #{first_player_name}"
+        elsif points_difference == -1
+          result = "Advantage #{second_player_name}"
+        elsif points_difference >= 2
+          result = "Win for #{first_player_name}"
         else
-          result ="Win for " + second_player_name
+          result = "Win for #{second_player_name}"
         end
       else
         (1...3).each do |i|
           if i == 1
             temp_score = first_player_points
           else
-            result += "-"
+            result += '-'
             temp_score = second_player_points
           end
-          result += {
-              0 => "Love",
-              1 => "Fifteen",
-              2 => "Thirty",
-              3 => "Forty",
-          }[temp_score]
+          result += POINTS_DESCRIPTION[:different].fetch(temp_score)
         end
       end
       result
