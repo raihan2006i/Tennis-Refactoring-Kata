@@ -1,54 +1,54 @@
 module Tennis
   class Game1
-    def initialize(player1Name, player2Name)
-      @player1Name = player1Name
-      @player2Name = player2Name
-      @p1points = 0
-      @p2points = 0
+    def initialize(first_player_name, second_player_name)
+      @first_player_name = first_player_name
+      @second_player_name = second_player_name
+      @first_player_points = 0
+      @second_player_points = 0
     end
 
-    def won_point(playerName)
-      if playerName == @player1Name
-        @p1points += 1
+    def won_point(player_name)
+      if player_name == @first_player_name
+        @first_player_points += 1
       else
-        @p2points += 1
+        @second_player_points += 1
       end
     end
 
     def score
       result = ""
-      tempScore=0
-      if (@p1points==@p2points)
+      temp_score=0
+      if (@first_player_points==@second_player_points)
         result = {
             0 => "Love-All",
             1 => "Fifteen-All",
             2 => "Thirty-All",
-        }.fetch(@p1points, "Deuce")
-      elsif (@p1points>=4 or @p2points>=4)
-        minusResult = @p1points-@p2points
-        if (minusResult==1)
-          result ="Advantage " + @player1Name
-        elsif (minusResult ==-1)
-          result ="Advantage " + @player2Name
-        elsif (minusResult>=2)
-          result = "Win for " + @player1Name
+        }.fetch(@first_player_points, "Deuce")
+      elsif (@first_player_points>=4 or @second_player_points>=4)
+        minus_result = @first_player_points-@second_player_points
+        if (minus_result==1)
+          result ="Advantage " + @first_player_name
+        elsif (minus_result ==-1)
+          result ="Advantage " + @second_player_name
+        elsif (minus_result>=2)
+          result = "Win for " + @first_player_name
         else
-          result ="Win for " + @player2Name
+          result ="Win for " + @second_player_name
         end
       else
         (1...3).each do |i|
           if (i==1)
-            tempScore = @p1points
+            temp_score = @first_player_points
           else
             result+="-"
-            tempScore = @p2points
+            temp_score = @second_player_points
           end
           result += {
               0 => "Love",
               1 => "Fifteen",
               2 => "Thirty",
               3 => "Forty",
-          }[tempScore]
+          }[temp_score]
         end
       end
       result
