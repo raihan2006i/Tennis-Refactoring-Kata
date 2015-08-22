@@ -1,11 +1,11 @@
-require_relative 'states/states'
+require_relative 'game_states/game_states'
 
 module Tennis
   class Game2
     include StatePattern
 
     attr_reader :first_player_name, :second_player_name
-    set_initial_state States::LoveAll
+    set_initial_state GameStates::LoveAll
 
     def initialize(first_player_name, second_player_name)
       @first_player_name = first_player_name

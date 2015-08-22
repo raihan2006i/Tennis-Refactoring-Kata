@@ -1,7 +1,7 @@
 require 'state_pattern'
 
 module Tennis
-  module States
+  module GameStates
     class LoveAll < StatePattern::State
 
       def score
