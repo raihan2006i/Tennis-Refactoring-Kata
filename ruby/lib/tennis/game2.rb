@@ -13,11 +13,7 @@ module Tennis
     end
 
     def won_point(player_name)
-      if player_name == first_player_name
-        first_player_won_point
-      else
-        second_player_won_point
-      end
+      player_name == first_player_name ? first_player_won_point : second_player_won_point
     end
   end
 end
