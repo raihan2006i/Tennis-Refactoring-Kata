@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     require_relative (1.0.3)
+    state_pattern (2.0.2)
     test-unit (2.5.5)
 
 PLATFORMS
@@ -9,6 +10,7 @@ PLATFORMS
 
 DEPENDENCIES
   require_relative
+  state_pattern
   test-unit
 
 BUNDLED WITH
