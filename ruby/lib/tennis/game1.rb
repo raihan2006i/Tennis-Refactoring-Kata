@@ -29,11 +29,17 @@ module Tennis
     end
 
     def won_point(player_name)
-      if player_name == first_player_name
-        @first_player_points += 1
-      else
-        @second_player_points += 1
-      end
+      player_name == first_player_name ? first_player_won_point : second_player_won_point
+    end
+
+    private
+
+    def first_player_won_point
+      @first_player_points += 1
+    end
+
+    def second_player_won_point
+      @second_player_points += 1
     end
   end
 end
