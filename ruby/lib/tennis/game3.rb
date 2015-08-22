@@ -1,32 +1,34 @@
 module Tennis
   class Game3
-    def initialize(player1Name, player2Name)
-      @p1N = player1Name
-      @p2N = player2Name
-      @p1 = 0
-      @p2 = 0
-    end
+    attr_accessor :first_player_name, :second_player_name, :first_player_points, :second_player_points
 
-    def won_point(n)
-      if n == @p1N
-        @p1 += 1
-      else
-        @p2 += 1
-      end
+    def initialize(first_player_name, second_player_name)
+      @first_player_name = first_player_name
+      @second_player_name = second_player_name
+      @first_player_points = 0
+      @second_player_points = 0
     end
 
     def score
-      if (@p1 < 4 and @p2 < 4) and (@p1 + @p2 < 6)
-        p = ["Love", "Fifteen", "Thirty", "Forty"]
-        s = p[@p1]
-        @p1 == @p2 ? s + "-All" : s + "-" + p[@p2]
+      if (first_player_points < 4 && second_player_points < 4) && (first_player_points + second_player_points < 6)
+        points = %w(Love Fifteen Thirty Forty)
+        score = points[first_player_points]
+        first_player_points == second_player_points ? score + '-All' : score + '-' + points[second_player_points]
       else
-        if (@p1 == @p2)
-          "Deuce"
+        if first_player_points == second_player_points
+          'Deuce'
         else
-          s = @p1 > @p2 ? @p1N : @p2N
-          (@p1-@p2)*(@p1-@p2) == 1 ? "Advantage " + s : "Win for " + s
+          player_in_advantage = first_player_points > second_player_points ? first_player_name : second_player_name
+          (first_player_points - second_player_points) * (first_player_points - second_player_points) == 1 ? "Advantage #{player_in_advantage}" : "Win for #{player_in_advantage}"
         end
+      end
+    end
+
+    def won_point(player_name)
+      if player_name == first_player_name
+        @first_player_points += 1
+      else
+        @second_player_points += 1
       end
     end
   end
