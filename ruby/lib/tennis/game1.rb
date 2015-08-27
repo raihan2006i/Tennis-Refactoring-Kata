@@ -13,15 +13,10 @@ module Tennis
       if first_player_points == second_player_points
         POINTS_DESCRIPTION[:equal].fetch(first_player_points, 'Deuce')
       elsif first_player_points >= 4 || second_player_points >= 4
-        points_difference = first_player_points - second_player_points
         if points_difference == 1
-          "Advantage #{first_player_name}"
-        elsif points_difference == -1
-          "Advantage #{second_player_name}"
-        elsif points_difference >= 2
-          "Win for #{first_player_name}"
+          "Advantage #{highest_scorer}"
         else
-          "Win for #{second_player_name}"
+          "Win for #{highest_scorer}"
         end
       else
         "#{POINTS_DESCRIPTION[:different].fetch(first_player_points)}-#{POINTS_DESCRIPTION[:different].fetch(second_player_points)}"
@@ -29,6 +24,7 @@ module Tennis
     end
 
     def won_point(player_name)
+      reset_caches
       player_name == first_player_name ? first_player_won_point : second_player_won_point
     end
 
@@ -36,6 +32,19 @@ module Tennis
 
     def first_player_won_point
       @first_player_points += 1
+    end
+
+    def highest_scorer
+      @highest_scorer ||= first_player_points > second_player_points ? first_player_name : second_player_name
+    end
+
+    def points_difference
+      @points_difference ||= (first_player_points - second_player_points).abs
+    end
+
+    def reset_caches
+      @highest_scorer = nil
+      @points_difference = nil
     end
 
     def second_player_won_point
