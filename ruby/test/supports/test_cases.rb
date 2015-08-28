@@ -1,6 +1,3 @@
-require_relative '../lib/tennis'
-require 'test/unit'
-
 TEST_CASES = [
     [0, 0, 'Love-All', 'player1', 'player2'],
     [1, 1, 'Fifteen-All', 'player1', 'player2'],
@@ -46,42 +43,3 @@ TEST_CASES = [
     [6, 5, 'Advantage One', 'One', 'player2'],
     [5, 6, 'Advantage Two', 'player1', 'Two']
 ]
-
-class TestTennis < Test::Unit::TestCase
-  def play_game(klass, first_player_points, second_player_points, first_player_name, second_player_name)
-    game = klass.new(first_player_name, second_player_name)
-    (0..[first_player_points, second_player_points].max).each do |i|
-      if i < first_player_points
-        game.won_point(first_player_name)
-      end
-      if i < second_player_points
-        game.won_point(second_player_name)
-      end
-    end
-    game
-  end
-
-  def test_score_game1
-    TEST_CASES.each do |testcase|
-      first_player_points, second_player_points, score, first_player_name, second_player_name = testcase
-      game = play_game(Tennis::Game1, first_player_points, second_player_points, first_player_name, second_player_name)
-      assert_equal(score, game.score)
-    end
-  end
-
-  def test_score_game2
-    TEST_CASES.each do |testcase|
-      first_player_points, second_player_points, score, first_player_name, second_player_name = testcase
-      game = play_game(Tennis::Game2, first_player_points, second_player_points, first_player_name, second_player_name)
-      assert_equal(score, game.score)
-    end
-  end
-
-  def test_score_game3
-    TEST_CASES.each do |testcase|
-      first_player_points, second_player_points, score, first_player_name, second_player_name = testcase
-      game = play_game(Tennis::Game3, first_player_points, second_player_points, first_player_name, second_player_name)
-      assert_equal(score, game.score)
-    end
-  end
-end

@@ -1,3 +1,5 @@
+require_relative '../../lib/tennis'
+
 module Tennis
   class Game1
     attr_reader :first_player_name, :second_player_name, :first_player_points, :second_player_points
