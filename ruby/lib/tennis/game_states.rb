@@ -1,3 +1,4 @@
+require_relative 'game_states/state'
 require_relative 'game_states/advantage'
 require_relative 'game_states/continue'
 require_relative 'game_states/deuce'

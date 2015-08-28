@@ -15,6 +15,10 @@ module Tennis
       @second_player_points = 0
     end
 
+    def point_difference
+      (first_player_points - second_player_points).abs
+    end
+
     def won_point(player_name)
       player_name == first_player_name ? first_player_won_point : second_player_won_point
       next_state
